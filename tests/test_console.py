@@ -146,6 +146,48 @@ class TestHBNBCommand(unittest.TestCase):
         obj = storage.all()["User." + obj_id]
         self.assertEqual(obj.first_name, "Teta")
 
+    def test_create_params_string(self):
+        """create sets a string param, underscores become spaces"""
+        obj_id = self.run_cmd('create Place name="My_little_house"')
+        obj = storage.all()["Place." + obj_id]
+        self.assertEqual(obj.name, "My little house")
+
+    def test_create_params_escaped_quote(self):
+        """create keeps an escaped double quote inside a string"""
+        obj_id = self.run_cmd('create Place name="a\\"b"')
+        obj = storage.all()["Place." + obj_id]
+        self.assertEqual(obj.name, 'a"b')
+
+    def test_create_params_integer(self):
+        """create sets an integer param"""
+        obj_id = self.run_cmd("create Place number_rooms=4")
+        obj = storage.all()["Place." + obj_id]
+        self.assertEqual(obj.number_rooms, 4)
+        self.assertIsInstance(obj.number_rooms, int)
+
+    def test_create_params_float(self):
+        """create sets a float param"""
+        obj_id = self.run_cmd("create Place latitude=37.77")
+        obj = storage.all()["Place." + obj_id]
+        self.assertEqual(obj.latitude, 37.77)
+        self.assertIsInstance(obj.latitude, float)
+
+    def test_create_params_invalid_skipped(self):
+        """create skips a param it cannot recognize"""
+        obj_id = self.run_cmd(
+            'create Place bad=abc name="Home" price_by_night=300')
+        obj = storage.all()["Place." + obj_id]
+        self.assertFalse(hasattr(obj, "bad"))
+        self.assertEqual(obj.name, "Home")
+        self.assertEqual(obj.price_by_night, 300)
+
+    def test_create_params_missing_equals(self):
+        """create skips a param that has no equal sign"""
+        obj_id = self.run_cmd('create Place junk name="Home"')
+        obj = storage.all()["Place." + obj_id]
+        self.assertFalse(hasattr(obj, "junk"))
+        self.assertEqual(obj.name, "Home")
+
 
 if __name__ == "__main__":
     unittest.main()
