@@ -140,3 +140,15 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+---
+
+## AirBnB_clone_v2
+
+This is my fork of the original AirBnB clone project, continued as part of the ALX Software Engineering Program. In this version I'm extending the console with storage improvements (file storage and database storage), plus unit tests and deployment work.
+
+### Contributor (v2)
+- **Keffalyssa Kezatet** - ALX Software Engineering student, Rwanda
+  GitHub: [keffalyssa](https://github.com/keffalyssa)
+
+All credit for the original codebase goes to its initial authors listed above.
