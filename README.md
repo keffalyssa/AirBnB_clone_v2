@@ -145,10 +145,10 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 
 ## AirBnB_clone_v2
 
-This is my fork of the original AirBnB clone project, continued as part of the ALX Software Engineering Program. In this version I'm extending the console with storage improvements (file storage and database storage), plus unit tests and deployment work.
+This is my fork of the original AirBnB clone project, continued as part of Frontier Institute of Technology. In this version I'm extending the console with storage improvements (file storage and database storage), plus unit tests and deployment work.
 
 ### Contributor (v2)
-- **Keffalyssa Kezatet** - ALX Software Engineering student, Rwanda
+- **Keffalyssa Kezatet** - Frontier Institute of Technology student, Rwanda
   GitHub: [keffalyssa](https://github.com/keffalyssa)
 
 All credit for the original codebase goes to its initial authors listed above.
