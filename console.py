@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
                 if '"' in value.replace('\\"', ''):
                     continue
                 value = value.replace('\\"', '"').replace("_", " ")
-            else:
+                       else:
                 try:
                     if "." in value:
                         value = float(value)
@@ -146,8 +146,9 @@ class HBNBCommand(cmd.Cmd):
                 except ValueError:
                     continue
             setattr(new_instance, key, value)
-                new_instance.save()
+        new_instance.save()
         print(new_instance.id)
+
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
