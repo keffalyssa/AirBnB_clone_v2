@@ -36,16 +36,24 @@ class DBStorage:
     def all(self, cls=None):
         """Query on the current database session all objects"""
         obj_dict = {}
-        classes = [State, City, User, Place, Amenity, Review]
+        classes = {
+            'State': State,
+            'City': City,
+            'User': User,
+            'Place': Place,
+            'Amenity': Amenity,
+            'Review': Review
+        }
 
         if cls:
             if isinstance(cls, str):
-                cls = eval(cls)
-            for obj in self.__session.query(cls).all():
-                key = "{}.{}".format(type(obj).__name__, obj.id)
-                obj_dict[key] = obj
+                cls = classes.get(cls)
+            if cls:
+                for obj in self.__session.query(cls).all():
+                    key = "{}.{}".format(type(obj).__name__, obj.id)
+                    obj_dict[key] = obj
         else:
-            for c in classes:
+            for c in classes.values():
                 for obj in self.__session.query(c).all():
                     key = "{}.{}".format(type(obj).__name__, obj.id)
                     obj_dict[key] = obj
