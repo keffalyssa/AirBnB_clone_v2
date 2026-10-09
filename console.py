@@ -64,11 +64,10 @@ class HBNBCommand(cmd.Cmd):
                 kwargs[key] = value
 
         try:
-            instance = self.classes[class_name](**kwargs)
-            instance.save()
-            print(instance.id)
+            new_instance = self.classes[class_name](**kwargs)
+            new_instance.save()
+            print(new_instance.id)
         except Exception as e:
-            # Mu gihe ForeignKey cyangwa ibindi byanze, nti bikwiriye gusohora crash itariyo
             return
 
     def do_show(self, line):
