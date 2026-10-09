@@ -63,12 +63,9 @@ class HBNBCommand(cmd.Cmd):
                         pass
                 kwargs[key] = value
 
-        try:
-            new_instance = self.classes[class_name](**kwargs)
-            new_instance.save()
-            print(new_instance.id)
-        except Exception as e:
-            return
+        new_instance = self.classes[class_name](**kwargs)
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
