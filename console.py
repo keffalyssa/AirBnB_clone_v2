@@ -43,29 +43,25 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in self.classes:
             print("** class doesn't exist **")
             return
-
         kwargs = {}
-        for arg in args[1:]:
-            if "=" in arg:
-                key, value = arg.split("=", 1)
-                if value.startswith('"') and value.endswith('"'):
-                    value = value[1:-1].replace('_', ' ')
-                    value = value.replace('\\"', '"')
-                elif '.' in value:
+        for param in args[1:]:
+            if '=' not in param:
+                continue
+            key, val = param.split('=', 1)
+            if len(val) >= 2 and val[0] == '"' and val[-1] == '"':
+                val = val[1:-1].replace('\"', '"').replace('_', ' ')
+            else:
+                try:
+                    val = int(val)
+                except ValueError:
                     try:
-                        value = float(value)
+                        val = float(val)
                     except ValueError:
-                        pass
-                else:
-                    try:
-                        value = int(value)
-                    except ValueError:
-                        pass
-                kwargs[key] = value
-
-        new_instance = self.classes[class_name](**kwargs)
-        new_instance.save()
-        print(new_instance.id)
+                        continue
+            kwargs[key] = val
+        obj = self.classes[class_name](**kwargs)
+        obj.save()
+        print(obj.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
@@ -121,3 +117,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
         else:
             print("** no instance found **")
+
+
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
