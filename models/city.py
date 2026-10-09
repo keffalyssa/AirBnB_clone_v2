@@ -1,19 +1,11 @@
 #!/usr/bin/python3
-""" City Module for HBNB project """
-import os
+"""This is the city class"""
 from models.base_model import BaseModel, Base
-
-if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-    from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 
 
 class City(BaseModel, Base):
-    """ The city class, contains state ID and name """
+    """This is the class for City"""
     __tablename__ = 'cities'
-    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        state_id = Column(String(60), ForeignKey('states.id'),
-                          nullable=False)
-        name = Column(String(128), nullable=False)
-    else:
-        state_id = ""
-        name = ""
+    name = Column(String(128), nullable=False)
+    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
