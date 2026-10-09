@@ -63,9 +63,13 @@ class HBNBCommand(cmd.Cmd):
                         pass
                 kwargs[key] = value
 
-        instance = self.classes[class_name](**kwargs)
-        instance.save()
-        print(instance.id)
+        try:
+            instance = self.classes[class_name](**kwargs)
+            instance.save()
+            print(instance.id)
+        except Exception as e:
+            # Mu gihe ForeignKey cyangwa ibindi byanze, nti bikwiriye gusohora crash itariyo
+            return
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
