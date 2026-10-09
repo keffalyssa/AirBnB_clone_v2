@@ -36,8 +36,6 @@ class Place(BaseModel, Base):
         amenities = relationship('Amenity', secondary='place_amenity',
                                  viewonly=False, backref='place_amenities')
     else:
-        amenity_ids = []
-
         @property
         def reviews(self):
             """Getter attribute reviews that returns the list of Review instances"""
