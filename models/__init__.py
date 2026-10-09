@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Instantiates an storage engine instance"""
+"""Initialize the models package"""
 from os import getenv
 
 if getenv('HBNB_TYPE_STORAGE') == 'db':
@@ -8,5 +8,4 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
 else:
     from models.engine.file_storage import FileStorage
     storage = FileStorage()
-
 storage.reload()
