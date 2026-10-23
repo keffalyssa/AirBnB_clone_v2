@@ -8,7 +8,8 @@ from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 from os.path import exists, isdir
 
-env.hosts = ['<IP web-01>', '<IP web-02>']
+env.hosts = ['3e760f2868fd@3e760f2868fd.77ce9431.set-cod.online',
+             '97c0d157829d@97c0d157829d.77ce9431.set-cod.online']
 
 
 @runs_once
